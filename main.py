@@ -124,7 +124,6 @@ async def on_message(message):
   )
 
   if violations[user_id] > 2:
-    # Mute pengguna selama 10 detik
     role = discord.utils.get(message.guild.roles, name='Muted')
     await message.author.add_roles(role)
     await message.channel.send(
@@ -133,7 +132,7 @@ async def on_message(message):
     violations[user_id] = 0  # Reset jumlah pelanggaran setelah memberi sanksi
 
     # Tunggu 100 detik sebelum menghapus peran Muted
-    await asyncio.sleep(1)
+    await asyncio.sleep(100)
     await message.author.remove_roles(role)
 
   await client.process_commands(message)
